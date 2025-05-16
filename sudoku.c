@@ -124,9 +124,9 @@ Node* DFS(Node* initial, int* cont){
       push(pila, nodo);
       nodo = next(adyacentes);
     }
-    clean(pila);
     free(n);
   }
+  clean(pila);
   return NULL;
 }
 
