@@ -3,3 +3,9 @@ vi., 16 de may. de 2025 16:59:20:
  1 file changed, 10 insertions(+)
  tests:  0|0
 3f0e54c
+vi., 16 de may. de 2025 17:02:50: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  2|4
+total_score: 15/70
+4363160

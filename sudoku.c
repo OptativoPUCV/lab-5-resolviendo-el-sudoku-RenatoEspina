@@ -51,7 +51,7 @@ int is_valid(Node* n){
 
 List* get_adj_nodes(Node* n){
   List* list=createList();
-  for(size_t i=0;i<9;) for(size_t k=0;k<9;k++){
+  for(size_t i=0;i<9;i++) for(size_t k=0;k<9;k++){
     if(n->sudo[i][k]==0){
       for(size_t j=1;j<=9;j++){
         Node* n2=copy(n);
