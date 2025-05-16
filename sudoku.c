@@ -125,6 +125,7 @@ Node* DFS(Node* initial, int* cont){
     }
     clean(pila);
     free(n);
+  }
   return NULL;
 }
 
