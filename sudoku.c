@@ -44,31 +44,31 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n){
- int visto[10];
+  int visto[10];
 
-    // Validar filas
-    for (int i = 0; i < 9; i++) {
-        for (int x = 0; x < 10; x++) visto[x] = 0;
-        for (int j = 0; j < 9; j++) {
-            int val = n->sudo[i][j];
-            if (val == 0) continue;
-            if (visto[val]) return 0;
-            visto[val] = 1;
-        }
-    }
-
-    // Validar columnas
+// Validar filas
+  for (int i = 0; i < 9; i++) {
+    for (int x = 0; x < 10; x++) visto[x] = 0;
     for (int j = 0; j < 9; j++) {
-        for (int x = 0; x < 10; x++) visto[x] = 0;
-        for (int i = 0; i < 9; i++) {
-            int val = n->sudo[i][j];
-            if (val == 0) continue;
-            if (visto[val]) return 0;
-            visto[val] = 1;
-        }
+      int val = n->sudo[i][j];
+      if (val == 0) continue;
+      if (visto[val]) return 0;
+      visto[val] = 1;
     }
+  }
 
-    // Validar submatrices 3x3
+// Validar columnas
+  for (int j = 0; j < 9; j++) {
+    for (int x = 0; x < 10; x++) visto[x] = 0;
+    for (int i = 0; i < 9; i++) {
+      int val = n->sudo[i][j];
+      if (val == 0) continue;
+      if (visto[val]) return 0;
+      visto[val] = 1;
+    }
+  }
+
+// Validar submatrices 3x3
   for (int k = 0; k < 9; k++) {
     for (int x = 0; x < 10; x++) visto[x] = 0;
     for (int p = 0; p < 9; p++) {
@@ -101,12 +101,33 @@ List* get_adj_nodes(Node* n){
 
 
 int is_final(Node* n){
-    return 0;
+  for(size_t i=0;i<9;i++) for(size_t k=0;k<9;k++){
+    if(n->sudo[i][k]==0) return 0;
+  }
+  return 1;
 }
 
 Node* DFS(Node* initial, int* cont){
+  Stack* pila = createStack();
+  push(pila, initial);
+  while (!is_empty(pila)) {
+    Node* n = top(pila);
+    pop(pila);
+    (*cont)++;
+    if (is_final(n)) {
+      return n;
+    }
+    List* adyacentes = get_adj_nodes(n);
+    Node* nodo = first(adyacentes);
+    while (nodo != NULL) {
+      push(pila, nodo);
+      nodo = next(adyacentes);
+    }
+    clean(pila);
+    free(n);
   return NULL;
 }
+
 
 
 
