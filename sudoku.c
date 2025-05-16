@@ -94,6 +94,7 @@ List* get_adj_nodes(Node* n){
         if(is_valid(n2)) pushBack(list,n2);
         else free(n2);
       }
+      return list;
     }
   }
   return list;
